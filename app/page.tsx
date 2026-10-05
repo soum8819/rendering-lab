@@ -4,7 +4,12 @@ import { cacheLife } from "next/cache";
 async function CachedTime() {
   "use cache";
   cacheLife("minutes");
-  return <p>Cached time (use cache): {new Date().toISOString()}</p>;
+  return (
+    <p>
+      [static shell, cached] Cached time (use cache):{" "}
+      {new Date().toISOString()}
+    </p>
+  );
 }
 
 async function DynamicInfo({
@@ -15,8 +20,11 @@ async function DynamicInfo({
   const { q } = await searchParams;
   return (
     <>
-      <p>Current time at render: {new Date().toISOString()}</p>
-      <p>Search query: {q ?? "(none)"}</p>
+      <p>
+        [streamed, dynamic] Current time at render:{" "}
+        {new Date().toISOString()}
+      </p>
+      <p>[streamed, dynamic] Search query: {q ?? "(none)"}</p>
     </>
   );
 }
